@@ -198,3 +198,71 @@ module mul (
 	assign prod[14] = sum7[7];
 	
 endmodule
+
+// Quadratwurzel Ziehen
+module sqrt (
+    input  wire [7:0] in_a,
+    output wire [3:0] out_sqrt
+);
+    assign out_sqrt =
+        (in_a >= 225) ? 4'd15 :
+        (in_a >= 196) ? 4'd14 :
+        (in_a >= 169) ? 4'd13 :
+        (in_a >= 144) ? 4'd12 :
+        (in_a >= 121) ? 4'd11 :
+        (in_a >= 100) ? 4'd10 :
+        (in_a >= 81)  ? 4'd9  :
+        (in_a >= 64)  ? 4'd8  :
+        (in_a >= 49)  ? 4'd7  :
+        (in_a >= 36)  ? 4'd6  :
+        (in_a >= 25)  ? 4'd5  :
+        (in_a >= 16)  ? 4'd4  :
+        (in_a >= 9)   ? 4'd3  :
+        (in_a >= 4)   ? 4'd2  :
+        (in_a >= 1)   ? 4'd1  :
+                        4'd0;
+endmodule
+
+// 8bit Modulsubtrahierer
+module msub (
+    input  wire [7:0] in_a,
+    input  wire [7:0] in_b,
+    output wire [7:0] out_mdiff,
+    output wire       out_ncarry
+);
+    wire [7:0] diff;
+    wire carry;
+    sub sub1 (.in_a(in_a), .in_b(in_b), .out_diff(diff), .out_carry(carry));
+    assign out_mdiff  = carry ? in_a : diff;
+    assign out_ncarry = carry ? 1'b0 : 1'b1;
+endmodule
+
+// 8bit Divider
+module divider (
+    input  wire [7:0] dividend,
+    input  wire [7:0] divisor,
+    output wire [7:0] quotient,
+    output wire [7:0] rest
+);
+    wire [7:0] r [0:8];
+    wire [7:0] ncarry;
+
+    assign r[0] = 8'b0;
+
+    genvar i;
+    generate
+        for (i = 0; i < 8; i = i + 1) begin : div_loop
+            wire [7:0] next_r;
+            assign next_r = {r[i][6:0], dividend[7-i]};
+            msub msub_i (
+                .in_a(next_r),
+                .in_b(divisor),
+                .out_mdiff(r[i+1]),
+                .out_ncarry(ncarry[7-i])
+            );
+        end
+    endgenerate
+
+    assign quotient = ncarry;
+    assign rest = r[8];
+endmodule
