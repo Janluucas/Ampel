@@ -1,0 +1,361 @@
+#! /usr/bin/vvp
+:ivl_version "11.0 (stable)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/system.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/v2005_math.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/va_math.vpi";
+S_0x5a879cc43cf0 .scope module, "main" "main" 2 71;
+ .timescale 0 0;
+v0x5a879ccb5930_0 .net "ampelfarbe_Behavioral", 1 0, v0x5a879cc8f0a0_0;  1 drivers
+v0x5a879ccb59f0_0 .net "ampelfarbe_RTL", 1 0, L_0x5a879ccb6830;  1 drivers
+v0x5a879ccb5a90_0 .net "ampelfarbe_Structural", 1 0, L_0x5a879ccb8dc0;  1 drivers
+v0x5a879ccb5b90_0 .var "clk", 0 0;
+v0x5a879ccb5c60_0 .var "cntr", 2 0;
+v0x5a879ccb5d50_0 .var "knopf", 0 0;
+E_0x5a879cc83850 .event posedge, v0x5a879ccb2050_0;
+E_0x5a879cc83c60 .event posedge, v0x5a879ccb1ed0_0;
+S_0x5a879cc43e80 .scope module, "ampel_Behavioral_inst" "Ampel_Behavioral" 2 81, 2 30 0, S_0x5a879cc43cf0;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 3 "counter";
+    .port_info 2 /INPUT 1 "knopf";
+    .port_info 3 /OUTPUT 2 "ampelfarbe";
+v0x5a879cc8f0a0_0 .var "ampelfarbe", 1 0;
+v0x5a879ccb1df0_0 .var "ampelfarbe_next", 1 0;
+v0x5a879ccb1ed0_0 .net "clk", 0 0, v0x5a879ccb5b90_0;  1 drivers
+v0x5a879ccb1f70_0 .net "counter", 2 0, v0x5a879ccb5c60_0;  1 drivers
+v0x5a879ccb2050_0 .net "knopf", 0 0, v0x5a879ccb5d50_0;  1 drivers
+v0x5a879ccb2160_0 .var "rot_extend", 0 0;
+v0x5a879ccb2220_0 .var "rot_extend_request", 0 0;
+v0x5a879ccb22e0_0 .var "rot_start", 2 0;
+E_0x5a879cc67ab0 .event posedge, v0x5a879ccb2050_0, v0x5a879ccb1ed0_0;
+E_0x5a879cc913e0 .event edge, v0x5a879ccb1f70_0;
+S_0x5a879ccb2440 .scope module, "ampel_RTL_inst" "Ampel_RTL" 2 79, 2 4 0, S_0x5a879cc43cf0;
+ .timescale 0 0;
+    .port_info 0 /INPUT 3 "counter";
+    .port_info 1 /OUTPUT 2 "ampelfarbe";
+L_0x5a879cc912d0 .functor NOT 1, L_0x5a879ccb5df0, C4<0>, C4<0>, C4<0>;
+L_0x5a879ccb5f90 .functor NOT 1, L_0x5a879ccb5ef0, C4<0>, C4<0>, C4<0>;
+L_0x5a879ccb6080 .functor AND 1, L_0x5a879cc912d0, L_0x5a879ccb5f90, C4<1>, C4<1>;
+L_0x5a879ccb6300 .functor AND 1, L_0x5a879ccb6190, L_0x5a879ccb6230, C4<1>, C4<1>;
+L_0x5a879ccb6510 .functor NOT 1, L_0x5a879ccb6470, C4<0>, C4<0>, C4<0>;
+L_0x5a879ccb65d0 .functor AND 1, L_0x5a879ccb6300, L_0x5a879ccb6510, C4<1>, C4<1>;
+L_0x5a879ccb6720 .functor OR 1, L_0x5a879ccb6080, L_0x5a879ccb65d0, C4<0>, C4<0>;
+L_0x5a879ccb6a50 .functor NOT 1, L_0x5a879ccb69b0, C4<0>, C4<0>, C4<0>;
+L_0x5a879ccb6c50 .functor NOT 1, L_0x5a879ccb6b60, C4<0>, C4<0>, C4<0>;
+L_0x5a879ccb6d10 .functor AND 1, L_0x5a879ccb6a50, L_0x5a879ccb6c50, C4<1>, C4<1>;
+L_0x5a879ccb6f20 .functor NOT 1, L_0x5a879ccb6e80, C4<0>, C4<0>, C4<0>;
+L_0x5a879ccb6f90 .functor AND 1, L_0x5a879ccb6d10, L_0x5a879ccb6f20, C4<1>, C4<1>;
+L_0x5a879ccb72b0 .functor AND 1, L_0x5a879ccb7110, L_0x5a879ccb7210, C4<1>, C4<1>;
+L_0x5a879ccb7370 .functor OR 1, L_0x5a879ccb6f90, L_0x5a879ccb72b0, C4<0>, C4<0>;
+L_0x5a879ccb70a0 .functor NOT 1, L_0x5a879ccb7500, C4<0>, C4<0>, C4<0>;
+L_0x5a879ccb7700 .functor AND 1, L_0x5a879ccb70a0, L_0x5a879ccb7660, C4<1>, C4<1>;
+L_0x5a879ccb75a0 .functor AND 1, L_0x5a879ccb7700, L_0x5a879ccb78a0, C4<1>, C4<1>;
+L_0x5a879ccb7c70 .functor OR 1, L_0x5a879ccb7370, L_0x5a879ccb75a0, C4<0>, C4<0>;
+v0x5a879ccb2640_0 .net *"_ivl_10", 0 0, L_0x5a879ccb6080;  1 drivers
+v0x5a879ccb2740_0 .net *"_ivl_13", 0 0, L_0x5a879ccb6190;  1 drivers
+v0x5a879ccb2820_0 .net *"_ivl_15", 0 0, L_0x5a879ccb6230;  1 drivers
+v0x5a879ccb28e0_0 .net *"_ivl_16", 0 0, L_0x5a879ccb6300;  1 drivers
+v0x5a879ccb29c0_0 .net *"_ivl_19", 0 0, L_0x5a879ccb6470;  1 drivers
+v0x5a879ccb2af0_0 .net *"_ivl_20", 0 0, L_0x5a879ccb6510;  1 drivers
+v0x5a879ccb2bd0_0 .net *"_ivl_22", 0 0, L_0x5a879ccb65d0;  1 drivers
+v0x5a879ccb2cb0_0 .net *"_ivl_24", 0 0, L_0x5a879ccb6720;  1 drivers
+v0x5a879ccb2d90_0 .net *"_ivl_3", 0 0, L_0x5a879ccb5df0;  1 drivers
+v0x5a879ccb2e70_0 .net *"_ivl_30", 0 0, L_0x5a879ccb69b0;  1 drivers
+v0x5a879ccb2f50_0 .net *"_ivl_31", 0 0, L_0x5a879ccb6a50;  1 drivers
+v0x5a879ccb3030_0 .net *"_ivl_34", 0 0, L_0x5a879ccb6b60;  1 drivers
+v0x5a879ccb3110_0 .net *"_ivl_35", 0 0, L_0x5a879ccb6c50;  1 drivers
+v0x5a879ccb31f0_0 .net *"_ivl_37", 0 0, L_0x5a879ccb6d10;  1 drivers
+v0x5a879ccb32d0_0 .net *"_ivl_4", 0 0, L_0x5a879cc912d0;  1 drivers
+v0x5a879ccb33b0_0 .net *"_ivl_40", 0 0, L_0x5a879ccb6e80;  1 drivers
+v0x5a879ccb3490_0 .net *"_ivl_41", 0 0, L_0x5a879ccb6f20;  1 drivers
+v0x5a879ccb3570_0 .net *"_ivl_43", 0 0, L_0x5a879ccb6f90;  1 drivers
+v0x5a879ccb3650_0 .net *"_ivl_46", 0 0, L_0x5a879ccb7110;  1 drivers
+v0x5a879ccb3730_0 .net *"_ivl_48", 0 0, L_0x5a879ccb7210;  1 drivers
+v0x5a879ccb3810_0 .net *"_ivl_49", 0 0, L_0x5a879ccb72b0;  1 drivers
+v0x5a879ccb38f0_0 .net *"_ivl_51", 0 0, L_0x5a879ccb7370;  1 drivers
+v0x5a879ccb39d0_0 .net *"_ivl_54", 0 0, L_0x5a879ccb7500;  1 drivers
+v0x5a879ccb3ab0_0 .net *"_ivl_55", 0 0, L_0x5a879ccb70a0;  1 drivers
+v0x5a879ccb3b90_0 .net *"_ivl_58", 0 0, L_0x5a879ccb7660;  1 drivers
+v0x5a879ccb3c70_0 .net *"_ivl_59", 0 0, L_0x5a879ccb7700;  1 drivers
+v0x5a879ccb3d50_0 .net *"_ivl_62", 0 0, L_0x5a879ccb78a0;  1 drivers
+v0x5a879ccb3e30_0 .net *"_ivl_63", 0 0, L_0x5a879ccb75a0;  1 drivers
+v0x5a879ccb3f10_0 .net *"_ivl_65", 0 0, L_0x5a879ccb7c70;  1 drivers
+v0x5a879ccb3ff0_0 .net *"_ivl_7", 0 0, L_0x5a879ccb5ef0;  1 drivers
+v0x5a879ccb40d0_0 .net *"_ivl_8", 0 0, L_0x5a879ccb5f90;  1 drivers
+v0x5a879ccb41b0_0 .net "ampelfarbe", 1 0, L_0x5a879ccb6830;  alias, 1 drivers
+v0x5a879ccb4290_0 .net "counter", 2 0, v0x5a879ccb5c60_0;  alias, 1 drivers
+L_0x5a879ccb5df0 .part v0x5a879ccb5c60_0, 0, 1;
+L_0x5a879ccb5ef0 .part v0x5a879ccb5c60_0, 1, 1;
+L_0x5a879ccb6190 .part v0x5a879ccb5c60_0, 0, 1;
+L_0x5a879ccb6230 .part v0x5a879ccb5c60_0, 1, 1;
+L_0x5a879ccb6470 .part v0x5a879ccb5c60_0, 2, 1;
+L_0x5a879ccb6830 .concat8 [ 1 1 0 0], L_0x5a879ccb6720, L_0x5a879ccb7c70;
+L_0x5a879ccb69b0 .part v0x5a879ccb5c60_0, 0, 1;
+L_0x5a879ccb6b60 .part v0x5a879ccb5c60_0, 1, 1;
+L_0x5a879ccb6e80 .part v0x5a879ccb5c60_0, 2, 1;
+L_0x5a879ccb7110 .part v0x5a879ccb5c60_0, 0, 1;
+L_0x5a879ccb7210 .part v0x5a879ccb5c60_0, 2, 1;
+L_0x5a879ccb7500 .part v0x5a879ccb5c60_0, 0, 1;
+L_0x5a879ccb7660 .part v0x5a879ccb5c60_0, 1, 1;
+L_0x5a879ccb78a0 .part v0x5a879ccb5c60_0, 2, 1;
+S_0x5a879ccb45a0 .scope module, "ampel_Structural_inst" "Ampel_Structural" 2 80, 2 13 0, S_0x5a879cc43cf0;
+ .timescale 0 0;
+    .port_info 0 /INPUT 3 "counter";
+    .port_info 1 /OUTPUT 2 "ampelfarbe";
+L_0x5a879ccb7e70 .functor NOT 1, L_0x5a879ccb7ee0, C4<0>, C4<0>, C4<0>;
+L_0x5a879ccb7fd0 .functor NOT 1, L_0x5a879ccb8040, C4<0>, C4<0>, C4<0>;
+L_0x5a879ccb8130 .functor NOT 1, L_0x5a879ccb81a0, C4<0>, C4<0>, C4<0>;
+L_0x5a879ccb8290 .functor AND 1, L_0x5a879ccb7e70, L_0x5a879ccb7fd0, C4<1>, C4<1>;
+L_0x5a879ccb83d0 .functor AND 1, L_0x5a879ccb8490, L_0x5a879ccb85b0, L_0x5a879ccb8130, C4<1>;
+L_0x5a879ccb86a0 .functor AND 1, L_0x5a879ccb7e70, L_0x5a879ccb7fd0, L_0x5a879ccb8130, C4<1>;
+L_0x5a879ccb8750 .functor AND 1, L_0x5a879ccb87c0, L_0x5a879ccb88f0, C4<1>, C4<1>;
+L_0x5a879ccb89e0 .functor AND 1, L_0x5a879ccb7e70, L_0x5a879ccb8ad0, L_0x5a879ccb8bc0, C4<1>;
+L_0x5a879ccb8cb0 .functor OR 1, L_0x5a879ccb8290, L_0x5a879ccb83d0, C4<0>, C4<0>;
+L_0x5a879ccb8f60 .functor OR 1, L_0x5a879ccb86a0, L_0x5a879ccb8750, L_0x5a879ccb89e0, C4<0>;
+v0x5a879ccb4730_0 .net *"_ivl_1", 0 0, L_0x5a879ccb7ee0;  1 drivers
+v0x5a879ccb4810_0 .net *"_ivl_11", 0 0, L_0x5a879ccb87c0;  1 drivers
+v0x5a879ccb48f0_0 .net *"_ivl_13", 0 0, L_0x5a879ccb88f0;  1 drivers
+v0x5a879ccb49e0_0 .net *"_ivl_15", 0 0, L_0x5a879ccb8ad0;  1 drivers
+v0x5a879ccb4ac0_0 .net *"_ivl_17", 0 0, L_0x5a879ccb8bc0;  1 drivers
+v0x5a879ccb4bf0_0 .net *"_ivl_18", 0 0, L_0x5a879ccb8cb0;  1 drivers
+v0x5a879ccb4cd0_0 .net *"_ivl_20", 0 0, L_0x5a879ccb8f60;  1 drivers
+v0x5a879ccb4db0_0 .net *"_ivl_3", 0 0, L_0x5a879ccb8040;  1 drivers
+v0x5a879ccb4e90_0 .net *"_ivl_5", 0 0, L_0x5a879ccb81a0;  1 drivers
+v0x5a879ccb4f70_0 .net *"_ivl_7", 0 0, L_0x5a879ccb8490;  1 drivers
+v0x5a879ccb5050_0 .net *"_ivl_9", 0 0, L_0x5a879ccb85b0;  1 drivers
+v0x5a879ccb5130_0 .net "ampelfarbe", 1 0, L_0x5a879ccb8dc0;  alias, 1 drivers
+v0x5a879ccb5210_0 .net "and00", 0 0, L_0x5a879ccb8290;  1 drivers
+v0x5a879ccb52d0_0 .net "and01", 0 0, L_0x5a879ccb83d0;  1 drivers
+v0x5a879ccb5390_0 .net "and10", 0 0, L_0x5a879ccb86a0;  1 drivers
+v0x5a879ccb5450_0 .net "and11", 0 0, L_0x5a879ccb8750;  1 drivers
+v0x5a879ccb5510_0 .net "and12", 0 0, L_0x5a879ccb89e0;  1 drivers
+v0x5a879ccb55d0_0 .net "cntr0", 0 0, L_0x5a879ccb7e70;  1 drivers
+v0x5a879ccb5690_0 .net "cntr1", 0 0, L_0x5a879ccb7fd0;  1 drivers
+v0x5a879ccb5750_0 .net "cntr2", 0 0, L_0x5a879ccb8130;  1 drivers
+v0x5a879ccb5810_0 .net "counter", 2 0, v0x5a879ccb5c60_0;  alias, 1 drivers
+L_0x5a879ccb7ee0 .part v0x5a879ccb5c60_0, 0, 1;
+L_0x5a879ccb8040 .part v0x5a879ccb5c60_0, 1, 1;
+L_0x5a879ccb81a0 .part v0x5a879ccb5c60_0, 2, 1;
+L_0x5a879ccb8490 .part v0x5a879ccb5c60_0, 0, 1;
+L_0x5a879ccb85b0 .part v0x5a879ccb5c60_0, 1, 1;
+L_0x5a879ccb87c0 .part v0x5a879ccb5c60_0, 0, 1;
+L_0x5a879ccb88f0 .part v0x5a879ccb5c60_0, 2, 1;
+L_0x5a879ccb8ad0 .part v0x5a879ccb5c60_0, 1, 1;
+L_0x5a879ccb8bc0 .part v0x5a879ccb5c60_0, 2, 1;
+L_0x5a879ccb8dc0 .concat8 [ 1 1 0 0], L_0x5a879ccb8cb0, L_0x5a879ccb8f60;
+    .scope S_0x5a879cc43e80;
+T_0 ;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x5a879ccb2160_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x5a879ccb2220_0, 0, 1;
+    %pushi/vec4 0, 0, 3;
+    %store/vec4 v0x5a879ccb22e0_0, 0, 3;
+    %end;
+    .thread T_0;
+    .scope S_0x5a879cc43e80;
+T_1 ;
+    %wait E_0x5a879cc913e0;
+    %load/vec4 v0x5a879ccb1f70_0;
+    %parti/s 1, 0, 2;
+    %inv;
+    %load/vec4 v0x5a879ccb1f70_0;
+    %parti/s 1, 1, 2;
+    %inv;
+    %and;
+    %load/vec4 v0x5a879ccb1f70_0;
+    %parti/s 1, 0, 2;
+    %load/vec4 v0x5a879ccb1f70_0;
+    %parti/s 1, 1, 2;
+    %and;
+    %load/vec4 v0x5a879ccb1f70_0;
+    %parti/s 1, 2, 3;
+    %inv;
+    %and;
+    %or;
+    %ix/load 4, 0, 0;
+    %flag_set/imm 4, 0;
+    %store/vec4 v0x5a879ccb1df0_0, 4, 1;
+    %load/vec4 v0x5a879ccb1f70_0;
+    %parti/s 1, 0, 2;
+    %inv;
+    %load/vec4 v0x5a879ccb1f70_0;
+    %parti/s 1, 1, 2;
+    %inv;
+    %and;
+    %load/vec4 v0x5a879ccb1f70_0;
+    %parti/s 1, 2, 3;
+    %inv;
+    %and;
+    %load/vec4 v0x5a879ccb1f70_0;
+    %parti/s 1, 0, 2;
+    %load/vec4 v0x5a879ccb1f70_0;
+    %parti/s 1, 2, 3;
+    %and;
+    %or;
+    %load/vec4 v0x5a879ccb1f70_0;
+    %parti/s 1, 0, 2;
+    %inv;
+    %load/vec4 v0x5a879ccb1f70_0;
+    %parti/s 1, 1, 2;
+    %and;
+    %load/vec4 v0x5a879ccb1f70_0;
+    %parti/s 1, 2, 3;
+    %and;
+    %or;
+    %ix/load 4, 1, 0;
+    %flag_set/imm 4, 0;
+    %store/vec4 v0x5a879ccb1df0_0, 4, 1;
+    %jmp T_1;
+    .thread T_1, $push;
+    .scope S_0x5a879cc43e80;
+T_2 ;
+    %wait E_0x5a879cc67ab0;
+    %load/vec4 v0x5a879ccb2050_0;
+    %load/vec4 v0x5a879ccb2160_0;
+    %nor/r;
+    %and;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_2.0, 8;
+    %pushi/vec4 1, 0, 1;
+    %assign/vec4 v0x5a879ccb2220_0, 0;
+T_2.0 ;
+    %load/vec4 v0x5a879ccb2160_0;
+    %nor/r;
+    %load/vec4 v0x5a879ccb2220_0;
+    %and;
+    %load/vec4 v0x5a879ccb1df0_0;
+    %pushi/vec4 2, 0, 2;
+    %cmp/e;
+    %flag_get/vec4 4;
+    %and;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_2.2, 8;
+    %pushi/vec4 1, 0, 1;
+    %assign/vec4 v0x5a879ccb2160_0, 0;
+    %load/vec4 v0x5a879ccb1f70_0;
+    %assign/vec4 v0x5a879ccb22e0_0, 0;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0x5a879ccb2220_0, 0;
+    %jmp T_2.3;
+T_2.2 ;
+    %load/vec4 v0x5a879ccb2160_0;
+    %load/vec4 v0x5a879ccb1f70_0;
+    %load/vec4 v0x5a879ccb22e0_0;
+    %cmp/e;
+    %flag_get/vec4 4;
+    %and;
+    %load/vec4 v0x5a879ccb2050_0;
+    %load/vec4 v0x5a879ccb1df0_0;
+    %pushi/vec4 2, 0, 2;
+    %cmp/e;
+    %flag_get/vec4 4;
+    %and;
+    %nor/r;
+    %and;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_2.4, 8;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0x5a879ccb2160_0, 0;
+T_2.4 ;
+T_2.3 ;
+    %load/vec4 v0x5a879ccb2160_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_2.6, 8;
+    %pushi/vec4 2, 0, 2;
+    %assign/vec4 v0x5a879cc8f0a0_0, 0;
+    %jmp T_2.7;
+T_2.6 ;
+    %load/vec4 v0x5a879ccb1df0_0;
+    %assign/vec4 v0x5a879cc8f0a0_0, 0;
+T_2.7 ;
+    %jmp T_2;
+    .thread T_2;
+    .scope S_0x5a879cc43e80;
+T_3 ;
+    %pushi/vec4 3, 0, 2;
+    %store/vec4 v0x5a879cc8f0a0_0, 0, 2;
+    %end;
+    .thread T_3;
+    .scope S_0x5a879cc43cf0;
+T_4 ;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x5a879ccb5b90_0, 0, 1;
+    %pushi/vec4 0, 0, 3;
+    %store/vec4 v0x5a879ccb5c60_0, 0, 3;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x5a879ccb5d50_0, 0, 1;
+    %end;
+    .thread T_4;
+    .scope S_0x5a879cc43cf0;
+T_5 ;
+    %vpi_call 2 84 "$dumpfile", "testbench.vcd" {0 0 0};
+    %vpi_call 2 85 "$dumpvars" {0 0 0};
+    %delay 1, 0;
+    %vpi_call 2 87 "$display", "Initial: Clock: %b, Counter: %b, Knopf: %b, Ampel_RTL: %b, Ampel_Structural: %b, Ampel_Behavioral: %b", v0x5a879ccb5b90_0, v0x5a879ccb5c60_0, v0x5a879ccb5d50_0, v0x5a879ccb59f0_0, v0x5a879ccb5a90_0, v0x5a879ccb5930_0 {0 0 0};
+    %delay 60, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x5a879ccb5d50_0, 0, 1;
+    %delay 10, 0;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x5a879ccb5d50_0, 0, 1;
+T_5.0 ;
+    %load/vec4 v0x5a879ccb5c60_0;
+    %pad/u 32;
+    %pushi/vec4 7, 0, 32;
+    %cmp/e;
+    %flag_get/vec4 4;
+    %cmpi/ne 1, 0, 1;
+    %jmp/0xz T_5.1, 6;
+    %wait E_0x5a879cc913e0;
+    %jmp T_5.0;
+T_5.1 ;
+    %delay 1, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x5a879ccb5d50_0, 0, 1;
+    %delay 1, 0;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x5a879ccb5d50_0, 0, 1;
+    %end;
+    .thread T_5;
+    .scope S_0x5a879cc43cf0;
+T_6 ;
+    %delay 50, 0;
+    %load/vec4 v0x5a879ccb5b90_0;
+    %inv;
+    %store/vec4 v0x5a879ccb5b90_0, 0, 1;
+    %jmp T_6;
+    .thread T_6;
+    .scope S_0x5a879cc43cf0;
+T_7 ;
+    %wait E_0x5a879cc83c60;
+    %load/vec4 v0x5a879ccb5c60_0;
+    %addi 1, 0, 3;
+    %store/vec4 v0x5a879ccb5c60_0, 0, 3;
+    %delay 1, 0;
+    %vpi_call 2 108 "$display", "Clock: %b, Counter: %b, Knopf: %b, Ampel_RTL: %b, Ampel_Structural: %b, Ampel_Behavioral: %b", v0x5a879ccb5b90_0, v0x5a879ccb5c60_0, v0x5a879ccb5d50_0, v0x5a879ccb59f0_0, v0x5a879ccb5a90_0, v0x5a879ccb5930_0 {0 0 0};
+    %jmp T_7;
+    .thread T_7;
+    .scope S_0x5a879cc43cf0;
+T_8 ;
+    %wait E_0x5a879cc83850;
+    %delay 1, 0;
+    %vpi_call 2 113 "$display", "Knopf gedr\303\274ckt bei Counter: %b", v0x5a879ccb5c60_0 {0 0 0};
+    %vpi_call 2 114 "$display", "Aktuelle Ampelfarbe: %b", v0x5a879ccb5930_0 {0 0 0};
+    %jmp T_8;
+    .thread T_8;
+    .scope S_0x5a879cc43cf0;
+T_9 ;
+    %delay 4000, 0;
+    %vpi_call 2 116 "$finish" {0 0 0};
+    %end;
+    .thread T_9;
+# The file index is used to find the file name in the following table.
+:file_names 3;
+    "N/A";
+    "<interactive>";
+    "ampel_knopf.v";
